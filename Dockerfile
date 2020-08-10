@@ -3,12 +3,13 @@ FROM ${ALPINE} AS alpine
 ARG ARCH=arm
 ARG KUBERNETES_RELEASE=v1.18.0
 WORKDIR /bin
+ADD script.sh /bin/script.sh
 RUN set -x \
  && apk --no-cache add curl \
  && curl -fsSLO https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_RELEASE}/bin/linux/${ARCH}/kubectl \
- && chmod +x kubectl
+ && chmod +x kubectl \
+ && chmod +x /bin/script.sh
 FROM scratch
 COPY --from=alpine /bin/kubectl /bin/kubectl
-ADD script.sh /bin/
-RUN chmod +x script.sh
+COPY --from=alpine /bin/script.sh /bin/script.sh
 ENTRYPOINT ["/bin/script.sh"]
