@@ -9,7 +9,4 @@ RUN set -x \
  && curl -fsSLO https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_RELEASE}/bin/linux/${ARCH}/kubectl \
  && chmod +x kubectl \
  && chmod +x /bin/script.sh
-FROM scratch
-COPY --from=alpine /bin/kubectl /bin/kubectl
-COPY --from=alpine /bin/script.sh /bin/script.sh
-ENTRYPOINT ["/bin/script.sh"]
+ENTRYPOINT ["/bin/sh", "/bin/script.sh"]
