@@ -9,5 +9,6 @@ RUN set -x \
  && chmod +x kubectl
 FROM scratch
 COPY --from=alpine /bin/kubectl /bin/kubectl
-ENTRYPOINT ["/bin/kubectl"]
-CMD ["help"]
+ADD script.sh /bin/
+RUN chmod +x script.sh
+ENTRYPOINT ["/bin/script.sh"]
