@@ -11,10 +11,6 @@ platform:
   arch: arm
 
 steps:
-- name: build
-  image: node
-  commands:
-  - npm install
 - name: container
   image: plugins/docker
   settings:
