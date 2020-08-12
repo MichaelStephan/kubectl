@@ -3,7 +3,6 @@ FROM ${ALPINE} AS alpine
 ARG ARCH=arm
 ARG KUBERNETES_RELEASE=v1.18.0
 WORKDIR /bin
-ADD ca.pem /bin/ca.pem
 ADD script.sh /bin/script.sh
 RUN set -x \
  && apk --no-cache add curl \
